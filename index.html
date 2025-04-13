@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>trade Sphere</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <h1><i class="fas fa-network-wired"></i> TradeSphere Connect</h1>
+    <ul>
+      <li><a href="first.html"><i class="transition-link"></i> Dashboard</a></li>
+      <li><a href="second.html"><i class="transition-link"></i> Applications</a></li>
+      <li><a href="third.html"><i class="transition-link"></i> Reports</a></li>
+      <li><a href="helpcontact.html"><i class="transition-link"></i> Contact</a></li>
+    </ul>
+  </nav>
+  <div class="slider">
+    <div class="slides" id="slideWrapper">
+      <div class="slide">
+        <img src="trade1.webp" alt="Slide 1">
+        <div class="caption"><button
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition">Login</button>
+            
+          <button
+            class="bg-white text-blue-600 border-2 border-blue-500 hover:bg-blue-500 hover:text-white font-semibold py-2 px-4 rounded transition">Register</button>
+        </div>
+
+      </div>
+      <div class="slide">
+        <img src="trade2.webp" alt="Slide 2">
+        <div class="caption">Trade Sphere is a digital platform that facilitates global trading of commodities, currencies, and assets. It connects investors, traders, and financial markets, offering tools for analysis, real-time data, and seamless transactions. Trade Sphere empowers users to access diverse investment opportunities efficiently, enhancing decision-making in dynamic financial environments.</div>
+      </div>
+      <div class="slide">
+        <img src="trade3.avif" alt="Slide 3">
+        <div class="caption">
+          Trade Sphere connections are more dynamic and accessible than ever, thanks to digital platforms and real-time global data. Investors and traders can connect across continents instantly, leveraging AI, blockchain, and mobile technology. This creates a seamless, transparent, and efficient trading environment, making global markets more interconnected and responsive.
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    const slideWrapper = document.getElementById("slideWrapper");
+    const slides = document.querySelectorAll(".slide");
+    const captions = document.querySelectorAll(".caption");
+    const totalSlides = slides.length;
+    let index = 0;
+
+    function showSlide(i) {
+      slideWrapper.style.transform = `translateX(-${i * 100}%)`;
+
+      // Restart animation on captions
+      captions.forEach((cap, idx) => {
+        cap.style.opacity = '0';
+        if (idx === i) {
+          cap.style.animation = 'none';
+          cap.offsetHeight; // Trigger reflow
+          cap.style.animation = null;
+          cap.style.animation = 'fadeIn 1s forwards';
+        }
+      });
+    }
+
+    document.getElementById("next").addEventListener("click", () => {
+      index = (index + 1) % totalSlides;
+      showSlide(index);
+    });
+
+    document.getElementById("prev").addEventListener("click", () => {
+      index = (index - 1 + totalSlides) % totalSlides;
+      showSlide(index);
+    });
+
+    // Auto slide every 3 seconds
+    setInterval(() => {
+      index = (index + 1) % totalSlides;
+      showSlide(index);
+    }, 3000);
+  </script>
+  <!-- why we inverst in this--------------------- -->
+  <section class="section">
+    <h2>Why invest with Trade Sphere?</h2>
+    <div class="features">
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Award-winning platform">
+        <div class="feature-title">Award-winning platform</div>
+        <div class="feature-desc">
+          Award-winning software recognized and praised by the most respected experts of the industry.
+        </div>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/2972/2972557.png" alt="Customizable interface">
+        <div class="feature-title">Customizable interface</div>
+        <div class="feature-desc">
+          Customize the platform to make it fit better to your needs — from chart type to color theme.
+        </div>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" alt="Convenient withdrawals">
+        <div class="feature-title">Convenient withdrawals</div>
+        <div class="feature-desc">
+          Withdraw your money in an instant using a wide range of available payment systems.
+        </div>
+      </div>
+
+      <div class="feature">
+        <img src="https://cdn-icons-png.flaticon.com/512/1086/1086933.png" alt="Support 24/7">
+        <div class="feature-title">Support 24/7</div>
+        <div class="feature-desc">
+          A team of professionals always here to support you.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--second page---------------------------------2-->
+  <div class="container2">
+    <div class="login-box">
+      <h2><i class="fas fa-user-lock"></i> Supplier Application</h2>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+    </div>
+
+    <div class="supplier-list">
+      <h3><i class="fas fa-list"></i> Supplier List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>ABC Manufacturing</td>
+            <td>Electronics</td>
+            <td class="status pending">Pending</td>
+            <td><a class="btn approve" href="#">Approve</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Global Textiles</td>
+            <td>Apparel</td>
+            <td class="status approved">Approved</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>SureBuild Supplies</td>
+            <td>Building Materials</td>
+            <td class="status rejected">Rejected</td>
+            <td><a class="btn reject" href="#">Rejected</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>SureBuild Supplies</td>
+            <td>Building Materials</td>
+            <td class="status rejected">Rejected</td>
+            <td><a class="btn reject" href="#">Rejected</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>SureBuild Supplies</td>
+            <td>Building Materials</td>
+            <td class="status rejected">Rejected</td>
+            <td><a class="btn reject" href="#">Rejected</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- cards----------------------- -->
+
+
+  <div class="container mx-auto py-12">
+    <div class="text-center mb-8">
+      <p class="text-gray-500">
+        300+ assets available
+      </p>
+      <h1 class="text-3xl font-bold mb-2">
+        Invest in the world's most popular assets
+      </h1>
+      <p class="text-gray-500">
+        From established industries to booming new age up-and-comers — pick from over a dozen of different routes to a
+        smart investment.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <img alt="Gold bars" class="w-full h-40 object-cover rounded-t-lg" src="gold.webp" />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">
+            Gold
+          </h2>
+          <p class="text-gray-500">
+            $3236.22
+          </p>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-green-500">
+              +2.04%
+              <span class="text-gray-500">
+                1D change
+              </span>
+            </p>
+          </div>
+          <button class="mt-4 w-full bg-red-100 text-red-500 py-2 rounded-lg border border-red-500 transition duration-300 hover:bg-red-500 hover:text-white">
+            Sign up
+          </button>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <img alt="Gold bars" class="w-full h-40 object-cover rounded-t-lg" src="gold.webp" />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">
+            XAUUSD (OTC)
+          </h2>
+          <p class="text-gray-500">
+            $3141.25
+          </p>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-green-500">
+              +1.37%
+              <span class="text-gray-500">
+                1D change
+              </span>
+            </p>
+          </div>
+          <button class="mt-4 w-full bg-red-100 text-red-500 py-2 rounded-lg border border-red-500 transition duration-300 hover:bg-red-500 hover:text-white">
+            Sign up
+          </button>
+        </div>
+      </div>
+    <div class="bg-white p-4 rounded-lg shadow-md transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+  <img 
+    alt="Gold bars" 
+    class="w-full h-40 object-cover rounded-t-lg transition duration-300" 
+    src="gold.webp" 
+  />
+  <div class="p-4">
+    <h2 class="text-lg font-semibold">UltraPro Short QQQ</h2>
+    <p class="text-gray-500">$36.20</p>
+    <div class="flex items-center justify-between mt-2">
+      <p class="text-red-500">
+        -6.63%
+        <span class="text-gray-500">1D change</span>
+      </p>
+    </div>
+    <button class="mt-4 w-full bg-red-100 text-red-500 py-2 rounded-lg border border-red-500 transition duration-300 hover:bg-red-500 hover:text-white">
+      Sign up
+    </button>
+  </div>
+</div>
+
+      <div class="bg-white p-4 rounded-lg shadow-md transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+        <img 
+          alt="Gold bars" 
+          class="w-full h-40 object-cover rounded-t-lg transition duration-300" 
+          src="gold.webp" 
+        />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">UltraPro Short QQQ</h2>
+          <p class="text-gray-500">$36.20</p>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-red-500">
+              -6.63%
+              <span class="text-gray-500">1D change</span>
+            </p>
+          </div>
+          <button class="mt-4 w-full bg-red-100 text-red-500 py-2 rounded-lg border border-red-500 transition duration-300 hover:bg-red-500 hover:text-white">
+            Sign up
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-white p-4 rounded-lg shadow-md transform transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+        <img 
+          alt="Gold bars" 
+          class="w-full h-40 object-cover rounded-t-lg transition duration-300" 
+          src="gold.webp" 
+        />
+        <div class="p-4">
+          <h2 class="text-lg font-semibold">UltraPro Short QQQ</h2>
+          <p class="text-gray-500">$36.20</p>
+          <div class="flex items-center justify-between mt-2">
+            <p class="text-red-500">
+              -6.63%
+              <span class="text-gray-500">1D change</span>
+            </p>
+          </div>
+          <button class="mt-4 w-full bg-red-100 text-red-500 py-2 rounded-lg border border-red-500 transition duration-300 hover:bg-red-500 hover:text-white">
+            Sign up
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <!--Third page-------------3-->
+
+  <div class="container">
+    <div class="main">
+      <div class="cards">
+        <div class="card">
+          <div class="card-content">
+            <div class="number">1217</div>
+            <div class="card-name">Approved</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="number">42</div>
+            <div class="card-name">Rejected</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="number">68</div>
+            <div class="card-name">Employees</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <div class="number">$4500</div>
+            <div class="card-name">Earnings</div>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+        </div>
+      </div>
+      <div class="charts">
+        <div class="chart">
+          <h2>Earnings (past 12 months)</h2>
+          <div>
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+        <div class="chart doughnut-chart">
+          <h2>Employees</h2>
+          <div>
+            <canvas id="doughnut"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Earnings in $',
+          data: [2050, 1900, 2100, 2800, 1800, 2000, 2500, 2600, 2450, 1950, 2300, 2900],
+          backgroundColor: [
+            'rgba(85,85,85, 1)'
+
+          ],
+          borderColor: 'rgb(41, 155, 99)',
+
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+  <script>
+    var ctx2 = document.getElementById('doughnut').getContext('2d');
+    var myChart2 = new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['Academic', 'Non-Academic', 'Administration', 'Others'],
+
+        datasets: [{
+          label: 'Employees',
+          data: [42, 12, 8, 6],
+          backgroundColor: [
+            'rgba(41, 155, 99, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(120, 46, 139,1)'
+
+          ],
+          borderColor: [
+            'rgba(41, 155, 99, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(120, 46, 139,1)'
+
+          ],
+          borderWidth: 1
+        }]
+
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+
+  <!-- HELP PAGE------------ -->
+  <div class="contact-container">
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <p>Have a question or comment? Send us a message!</p>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p><i class="fas fa-map-marker-alt"></i> 123 Trade St, Market City, USA</p>
+      <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+      <p><i class="fas fa-envelope"></i> support@tradesphere.com</p>
+      <iframe src="https://maps.google.com/maps?q=New York&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+  <script>
+    document.querySelectorAll(".transition-link").forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 500); // Match the fade-out time
+      });
+    });
+  </script>
+  <script>
+    // Fade-in when page fully loads
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+
+      // Optional: Animate section
+      const section = document.getElementById('main-section');
+      setTimeout(() => {
+        section.classList.add('visible');
+      }, 300);
+    });
+  </script>
+  <!-- Fixed Bottom Banner -->
+  <div class="banner">
+    <div class="banner-text">
+      Open Demat Account for <span class="highlight">Free</span>
+    </div>
+    <button class="new-account-btn" onclick="showForm()">New Account</button>
+  </div>
+
+  <!-- Hidden Login Form Popup -->
+  <div class="login-overlay" id="formOverlay">
+    <div class="login-container">
+      <button class="close-btn" onclick="hideForm()">×</button>
+      <h2>Create Account</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+      <div class="login-footer">
+        Already have an account? <a href="#">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById('formOverlay').style.display = 'flex';
+    }
+
+    function hideForm() {
+      document.getElementById('formOverlay').style.display = 'none';
+    }
+  </script>
+
+  
+
+
+
+
+</body>
+
+</html>

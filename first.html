@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          .slider {
+    position: relative;
+    width: 100%;
+    max-width: 1500px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease-in-out;
+  }
+
+  .slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .nav button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+
+  .nav button:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 600px) {
+    .slider {
+      height: 250px;
+    }
+    .caption {
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+  }
+    </style>
+</head>
+<body>
+      <div class="slider">
+        <div class="slides" id="slideWrapper">
+          <div class="slide">
+            <img src="trade1.webp" alt="Slide 1">
+            <div class="caption">ncvkjghfgjkblkflhgnncgkl h gk dgkj hkchgfhgkjbndfgpertjhyuioghjdkbkmndkjhdjvnkjdgbgvimhvhi</div>
+          </div>
+          <div class="slide">
+            <img src="trade2.webp" alt="Slide 2">
+            <div class="caption">hv;duoyhgjhfgouyhfjhdvuhvoyfmioceuymoipoiuww iout8ytunymgog,uigymkgjhjihgpduiofyphjohc0m9guymiougjingg8yyyyyyhpgjhnfjkynuihiufyiuoog</div>
+          </div>
+          <div class="slide">
+            <img src="trade3.avif" alt="Slide 3">
+            <div class="caption">nvbhjglntifuycgnirupyn9ryoniryuiorynynugmiuumfkvhbbviumxpioiuepioyuighftfdbhgjkaiuygfgfvbjhfgvcvjhgytgghtahfdbhdg</div>
+          </div>
+        </div>
+        <div class="nav">
+          <button id="prev">&#10094;</button>
+          <button id="next">&#10095;</button>
+        </div>
+      </div>
+      
+      <script>
+        const slideWrapper = document.getElementById("slideWrapper");
+        const slides = document.querySelectorAll(".slide");
+        const captions = document.querySelectorAll(".caption");
+        const totalSlides = slides.length;
+        let index = 0;
+      
+        function showSlide(i) {
+          slideWrapper.style.transform = `translateX(-${i * 100}%)`;
+      
+          // Restart animation on captions
+          captions.forEach((cap, idx) => {
+            cap.style.opacity = '0';
+            if (idx === i) {
+              cap.style.animation = 'none';
+              cap.offsetHeight; // Trigger reflow
+              cap.style.animation = null;
+              cap.style.animation = 'fadeIn 1s forwards';
+            }
+          });
+        }
+      
+        document.getElementById("next").addEventListener("click", () => {
+          index = (index + 1) % totalSlides;
+          showSlide(index);
+        });
+      
+        document.getElementById("prev").addEventListener("click", () => {
+          index = (index - 1 + totalSlides) % totalSlides;
+          showSlide(index);
+        });
+      
+        // Auto slide every 3 seconds
+        setInterval(() => {
+          index = (index + 1) % totalSlides;
+          showSlide(index);
+        }, 3000);
+      </script>
+</body>
+</html>
